@@ -82,4 +82,20 @@ var Handel_Pixel = {
         return pixels;
 
     },
+    /**
+     * 反转
+     * @param pixels
+     * @returns {*}
+     */
+    invert: function (pixels) {
+        var d = pixels.data;
+
+        for (var i = 0; i < d.length; i += 4) {
+            d[i] = 255 - d[i];
+            d[i+1] = 255 - d[i + 1];
+            d[i+2] = 255 - d[i + 2];
+        }
+
+        return pixels;
+    }
 }

@@ -112,7 +112,7 @@
         canvas_to_image.src = canvas.toDataURL('image/png'); //拷贝只拷了部分,黑色部分没拷贝上
     }
 
-    img.src = "http://www.404mzk.com/Image/Index/index.jpg";
+    img.src = "../image/common/lron_man.jpg";
 
 
 
@@ -163,21 +163,35 @@
     function () {
 
     var canvas_prxel = document.getElementById('pixel')
-        ctx_prxel = canvas_prxel.getContext('2d'), //定时器设置会设计到全局域污染.
+        ctx_prxel = canvas_prxel.getContext('2d'),
+        ctx_grayscale = document.getElementById('grayscale').getContext('2d'),
+        ctx_sepia  = document.getElementById('sepia').getContext('2d'),
+        ctx_red  = document.getElementById('red').getContext('2d'),
+        ctx_brightness  = document.getElementById('brightness').getContext('2d'),
+        ctx_invert  = document.getElementById('invert').getContext('2d'),
         img = new Image();
 
     img.onload = function () {
         ctx_prxel.drawImage(img, 20, 20);
 
-        if (canvas_prxel.width >0 && canvas_prxel.height > 0) {
-            var image_data = ctx_prxel.getImageData(0,0,canvas_prxel.width,canvas_prxel.height);
-            console.log(image_data);
-            ctx_prxel.putImageData(Handel_Pixel.grayscale(image_data),0,0);
-        }
+        //一开始打算只取一个,不过估计函数调用时,是改变数组,所以原来的也会受影响
+        var image_data_grayscale = ctx_prxel.getImageData(0,0,canvas_prxel.width,canvas_prxel.height);
+        var image_data_sepia_ = ctx_prxel.getImageData(0,0,canvas_prxel.width,canvas_prxel.height);
+        var image_data_red = ctx_prxel.getImageData(0,0,canvas_prxel.width,canvas_prxel.height);
+        var image_data_brightness = ctx_prxel.getImageData(0,0,canvas_prxel.width,canvas_prxel.height);
+        var image_data_invert = ctx_prxel.getImageData(0,0,canvas_prxel.width,canvas_prxel.height);
+
+        ctx_grayscale.putImageData(Handel_Pixel.grayscale(image_data_grayscale),0,0);
+        ctx_sepia.putImageData(Handel_Pixel.sepia(image_data_sepia_),0,0);
+        ctx_red.putImageData(Handel_Pixel.red(image_data_red),0,0);
+        ctx_brightness.putImageData(Handel_Pixel.brightness(image_data_brightness,100),0,0);
+        ctx_invert.putImageData(Handel_Pixel.invert(image_data_invert),0,0);
+
     }
 
     //img.crossOrigin = '*';
-    img.src = 'http://404mzk.com/image/common/mzk.jpg';
+    //img.src = '../image/baozoumanhua/tease.png';
+    img.src = '../image/common/lron_man.jpg';
 
 
 })();
