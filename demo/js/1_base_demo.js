@@ -174,7 +174,7 @@
     img.onload = function () {
         ctx_prxel.drawImage(img, 20, 20);
 
-        //一开始打算只取一个,不过估计函数调用时,是改变数组,所以原来的也会受影响
+        //一开始打算只取一个,不过函数调用时,是改变数组,所以原来的也会受影响
         var image_data_grayscale = ctx_prxel.getImageData(0,0,canvas_prxel.width,canvas_prxel.height);
         var image_data_sepia_ = ctx_prxel.getImageData(0,0,canvas_prxel.width,canvas_prxel.height);
         var image_data_red = ctx_prxel.getImageData(0,0,canvas_prxel.width,canvas_prxel.height);
