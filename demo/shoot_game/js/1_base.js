@@ -19,10 +19,12 @@ clear_base_1();
 /**
  * 注册键盘监听事件
  */
-KeyPress.init();
+Key_Press.init();
 
 loop_game();
 function loop_game() {
-    Lead.draw_screen();
+    clear_base_1()
+    Lead.draw_screen()
+    Bullet.draw_screen()
     window.setTimeout(loop_game, 1000/40);
 }

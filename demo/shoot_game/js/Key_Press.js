@@ -1,17 +1,19 @@
 /**
- * Created by maizhikun on 16/6/6.
+ * 记录按键
+ * @type {{key_press: Array, init_key_up: Function, init_key_down: Function, init: Function}}
  */
-var KeyPress = {
+var Key_Press = {
+    key_press: [],
     init_key_up: function() {
         document.onkeyup = function(e) {
             e = e || window.event;
-            Lead.more_direction[e.keyCode] = false;
+            Key_Press.key_press[e.keyCode] = false;
         }
     },
     init_key_down: function() {
         document.onkeydown = function(e) {
             e = e || window.evnet;
-            Lead.more_direction[e.keyCode] = true;
+            Key_Press.key_press[e.keyCode] = true;
         }
     },
     init: function(){
