@@ -16,7 +16,6 @@ var Bullets = {
                     element.x = element.circle.x + Math.cos(element.circle.angle) * element.circle.radius
                     element.y = element.circle.y + Math.sin(element.circle.angle) * element.circle.radius
                     element.circle.angle +=element.speed
-                    //element.circle.radius  += element.circle.radius_inc
                     ctx.arc(element.x , element.y, 10, 0, Math.PI * 2, true);
                     ctx.closePath();
                     ctx.fill();
@@ -58,12 +57,15 @@ var Bullet = function(type){
      * 子弹类型
      */
     this.type = type;
+    /**
+     * 子弹遵循的圆
+     */
     this.circle ={
         x: Lead.x,
-            y: Lead.y,
-            radius: 125,
-            angle: 0,
-            radius_inc: 2,
+        y: Lead.y,
+        radius: 125,
+        angle: 0,
+        radius_inc: 2,
     },
     /**
      * 角速度
