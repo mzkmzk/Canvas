@@ -39,8 +39,6 @@ var Lead = {
      * 绘制小球
      */
     draw_ball: function(){
-        console.log('小球x' + (this.x +this.RADIUS));
-        console.log('小球y' + (this.y +this.RADIUS));
         ctx.beginPath();
         ctx.fillStyle = 'white';
         ctx.arc(this.x +this.RADIUS, this.y+this.RADIUS, 10, 0, Math.PI * 2, true);

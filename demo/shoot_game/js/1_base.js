@@ -25,6 +25,6 @@ loop_game();
 function loop_game() {
     clear_base_1()
     Lead.draw_screen()
-    Bullet.draw_screen()
+    Bullets.draw_screen()
     window.setTimeout(loop_game, 1000/40);
 }
