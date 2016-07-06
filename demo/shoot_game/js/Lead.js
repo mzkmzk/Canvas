@@ -75,6 +75,9 @@ var Lead = {
         this.velocity['y'] -= this.ACCELERATED_VELOCITY;
     },
     more: function() {
+        //增加反弹
+        this.velocity['x'] *= (this.x > base_1.width || this.x < 0)? -1 : 1;
+        this.velocity['y'] *= (this.y > base_1.height || this.y < 0)? -1 : 1;
         this.x += this.velocity['x'];
         this.y += this.velocity['y'];
     },
