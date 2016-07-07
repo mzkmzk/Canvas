@@ -28,13 +28,13 @@ var Bullets = {
      */
     send: function(){
         if (Key_Press.key_press[75] === true) {
-            console.log('send');
             var bullet = new Bullet('CIRCULAR_MOTION');
             this.bullets.push(bullet);
-            console.log(bullet);
+            Music.play('bullet');
         }
     },
     draw_screen: function(){
+
         this.send()
         this.draw_bullet()
     },
