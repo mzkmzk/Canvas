@@ -7,10 +7,10 @@ var Bullets = {
      * 绘制子弹
      */
     draw_bullet: function() {
-        console.log(this.bullets);
-        this.bullets.forEach(function (element, index) {
+        //console.log(this.bullets);
+        this.bullets.forEach(function (element) {
             switch (element.type) {
-                case 'CIRCULAR_MOTION':
+                case 'CIRCULAR_MOTION': //匀速圆周
                     ctx.beginPath();
                     ctx.fillStyle = 'white';
                     element.x = element.circle.x + Math.cos(element.circle.angle) * element.circle.radius
@@ -19,7 +19,19 @@ var Bullets = {
                     ctx.arc(element.x , element.y, 10, 0, Math.PI * 2, true);
                     ctx.closePath();
                     ctx.fill();
-                    break
+                    break;
+                case 'SPIRAL' : //螺旋
+                    var RADIUS_INC = 2; //设置每次增加的半径
+                    ctx.beginPath();
+                    ctx.fillStyle = 'yellow';
+                    element.x = element.circle.x + Math.cos(element.circle.angle) * element.circle.radius;
+                    element.y = element.circle.y + Math.sin(element.circle.angle) * element.circle.radius;
+                    element.circle.angle +=element.speed;
+                    element.circle.radius += RADIUS_INC;
+                    ctx.arc(element.x , element.y, 10, 0, Math.PI * 2, true);
+                    ctx.closePath();
+                    ctx.fill();
+                    break;
             }
         })
     },
@@ -27,8 +39,12 @@ var Bullets = {
      * 发射子弹
      */
     send: function(){
-        if (Key_Press.key_press[75] === true) {
+        if (Key_Press.key_press[74] === true) {
             var bullet = new Bullet('CIRCULAR_MOTION');
+            this.bullets.push(bullet);
+            Music.play('bullet');
+        } else if (Key_Press.key_press[75] === true) {
+            var bullet = new Bullet('SPIRAL');
             this.bullets.push(bullet);
             Music.play('bullet');
         }
