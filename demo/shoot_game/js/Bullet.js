@@ -33,11 +33,11 @@ var Bullets = {
                     ctx.fill();
                     break;
                 case 'BEZIER': //贝塞尔  
-                    var p1 = {x: element.circle.x, y: element.circle.y}; //起点
-                    var p2 = {x: 0, y: base_1.height }; //贝塞尔点1
-                    var p3 = {x: base_1.width, y: base_1.height }; //贝塞尔点2
-                    var p4 = {x: base_1.width, y: 0 };  //终点
-
+                    var p1 = {x: element.circle.x, y: element.circle.y }; //起点
+                    var p2 = {x: 0, y: 0};  //贝塞尔点1
+                    var p3 = {x: base_1.width, y: base_1.height}; //贝塞尔点2
+                    var p4 = {x: base_1.width, y: 0 }; //终点
+                    
                     var cx = 3 * (p2.x - p1.x),
                         bx = 3 * (p3.x - p2.x) - cx,
                         ax = p4.x - p1.x - cx - bx,
@@ -52,7 +52,7 @@ var Bullets = {
                     console.log(xt);
                     console.log(yt);
                     if(element.t<=1)
-                        element.t += element.speed;     
+                        element.t += element.bezier_speed;     
                     ctx.beginPath();
                     ctx.fillStyle = 'red';
                     ctx.arc(element.x , element.y, 10, 0, Math.PI * 2, true);
@@ -121,4 +121,8 @@ var Bullet = function(type){
      * 用于布尔尔记录行程, 为1时已经到终点
      */
     this.t = 0;
+    /**
+     * 贝塞尔的角速度
+     */
+    this.bezier_speed = .01;
 }
